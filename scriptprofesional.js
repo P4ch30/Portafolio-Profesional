@@ -624,15 +624,6 @@ form.addEventListener("submit", function (e) {
     observerML.observe(tile);
   });
 
-
-
-
-
-
-
-
-
-
   const observerfade = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
