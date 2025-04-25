@@ -32,7 +32,7 @@ html {
   .hero-stochastic, .spotify-carousel-section, .apple-carousel-section {
     padding-left: 1rem !important;
     padding-right: 1rem !important;
-    height: auto !important;
+    t: auto !important;
   }
   
   /* Botones */
@@ -61,7 +61,7 @@ html {
 ========*/
 
 body {
-  height: 100%; 
+  t: 100%; 
   margin: 0;    
   font-family: "Poppins", sans-serif; 
   color: var(--clr-fg);
@@ -72,7 +72,7 @@ main {
   max-width: 2000px;
   width: 100%;
   margin: 0 auto;
-  min-height: 110vh; /* Asegura que `main` ocupe toda la altura de la pantalla */
+  min-t: 110vh; /* Asegura que `main` ocupe toda la altura de la pantalla */
   display: flex;
   flex-direction: column;
   justify-content: center; /* Centra verticalmente */
@@ -83,7 +83,7 @@ main {
   flex-direction: column;
   justify-content: center; /* Centra verticalmente */
   align-items: center;     /* Centra horizontalmente */
-  min-height: 75vh;           /* 100% del alto de la ventana */
+  min-t: 75vh;           /* 100% del alto de la ventana */
   text-align: center;
   padding: 0 1em;          /* Agrega espacio a los lados en pantallas pequeñas */
   box-sizing: border-box;  /* Asegura que el padding no afecte el tamaño total */
@@ -234,7 +234,7 @@ h1,
 h2,
 h3,
 h4 {
-  line-height: 1.2;
+  line-t: 1.2;
   color: var(--clr-fg-alt);
 }
 
@@ -288,7 +288,7 @@ button {
   background-color: #000000;
   overflow: hidden;
   width: 100vw;
-  height: 100vh;
+  t: 100vh;
   margin: 0;
   padding: 0;
   position: relative;
@@ -540,7 +540,7 @@ button {
   
   .div1_ml {
     min-height: 90vh; 
-    heigh:90vh;
+    height:90vh;
     flex-direction: column;
     padding: 1.5rem;
   }
