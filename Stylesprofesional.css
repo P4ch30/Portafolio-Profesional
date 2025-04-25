@@ -1280,6 +1280,7 @@ background-color: #000000; /* o transparente si prefieres */
   
   .div1, .div1MN {
     min-height: 90vh; /* 90% de la altura de la ventana del dispositivo */
+    height:90vh;
     flex-direction: column;
     padding: 1.5rem;
   }
@@ -1290,7 +1291,7 @@ background-color: #000000; /* o transparente si prefieres */
 .div1MN {
   grid-column: span 2 / span 2;
   grid-row: span 6 / span 6;
-  display: flex;
+  display: block;
   justify-content: center;
   align-items: center;
   padding: 2rem;
