@@ -1,10 +1,8 @@
 const body = document.body;
 const btnTheme = document.querySelector(".fa-moon");
-const btnHamburger = document.querySelector(".fa-bars");
 Chart.defaults.font.family = "'Poppins', sans-serif";
 
-
-
+// Función para aplicar el tema
 const addThemeClass = (bodyClass, btnClass) => {
   body.classList.add(bodyClass); // Añade la clase (light o dark) al body
   btnTheme.classList.add(btnClass); // Añade la clase al botón (para cambiar el ícono)
@@ -35,99 +33,97 @@ const setTheme = (bodyClass, btnClass) => {
   updateCharts(currentCategory);
 };
 
-
 // Alterna entre tema oscuro y claro
 const toggleTheme = () =>
   isDark() ? setTheme("light", "fa-moon") : setTheme("dark", "fa-sun");
 
 btnTheme.addEventListener("click", toggleTheme);
-
-const displayList = () => {
-  const navUl = document.querySelector(".nav__list");
-
-  if (btnHamburger.classList.contains("fa-bars")) {
-    btnHamburger.classList.remove("fa-bars");
-    btnHamburger.classList.add("fa-times");
-    navUl.classList.add("display-nav-list");
-  } else {
-    btnHamburger.classList.remove("fa-times");
-    btnHamburger.classList.add("fa-bars");
-    navUl.classList.remove("display-nav-list");
-  }
-};
-
-btnHamburger.addEventListener("click", displayList);
-
-
-const scrollUp = () => {
-  const btnScrollTop = document.querySelector(".scroll-top");
-
-  if (body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
-    btnScrollTop.style.display = "block";
-  } else {
-    btnScrollTop.style.display = "none";
-  }
-};
-
-document.addEventListener("scroll", scrollUp);
-
-// Animación de barras de progreso con IntersectionObserver
 document.addEventListener("DOMContentLoaded", () => {
-  const progressBars = document.querySelectorAll(".progress-bar");
+  // Elementos del menú hamburguesa
+  const btnHamburger = document.querySelector('.nav__hamburger');
+  const navUl = document.querySelector('.nav__list');
+  const hamburgerIcon = document.getElementById('hamburger-icon');
 
+  const displayList = () => {
+    navUl.classList.toggle('active'); // Muestra o esconde el menú
+
+    if (hamburgerIcon.classList.contains('fa-bars')) {
+      hamburgerIcon.classList.remove('fa-bars');
+      hamburgerIcon.classList.add('fa-times');
+    } else {
+      hamburgerIcon.classList.remove('fa-times');
+      hamburgerIcon.classList.add('fa-bars');
+    }
+  };
+
+  btnHamburger.addEventListener('click', displayList);
+
+  // Botón de scroll arriba
+  const scrollUp = () => {
+    const btnScrollTop = document.querySelector(".scroll-top");
+    if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
+      btnScrollTop.style.display = "block";
+    } else {
+      btnScrollTop.style.display = "none";
+    }
+  };
+
+  document.addEventListener("scroll", scrollUp);
+
+  // Animación de progreso
+  const progressBars = document.querySelectorAll(".progress-bar");
   const animateBar = (entries, observer) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         const bar = entry.target;
         const value = bar.getAttribute("data-progress");
-        bar.style.width = value + "%"; // Se llena la barra con animación
-        observer.unobserve(bar); // Dejar de observar una vez animada
+        bar.style.width = value + "%";
+        observer.unobserve(bar);
       }
     });
   };
 
   const observer = new IntersectionObserver(animateBar, {
-    threshold: 0.5, // Activa cuando el 50% del elemento es visible
+    threshold: 0.5,
   });
 
   progressBars.forEach(bar => observer.observe(bar));
-});
-  
- // Evento de scroll para reducir el tamaño de la barra de navegación horizontalmente
- window.addEventListener("scroll", function () {
+
+  // Scroll: cambia tamaño navbar
   const navbar = document.getElementById("navbar");
+  let inactivityTimer;
 
-  if (window.scrollY > 425) {
-      navbar.classList.add("scrolled");
-  } else {
-      navbar.classList.remove("scrolled");
-  }
-
-  // Resetear el temporizador de inactividad cuando haya scroll
-  clearTimeout(inactivityTimer);
-  navbar.classList.remove("hidden");
-
-  // Establecer el temporizador para ocultar la barra de navegación
-  inactivityTimer = setTimeout(function() {
+  const resetInactivityTimer = () => {
+    clearTimeout(inactivityTimer);
+    navbar.classList.remove("hidden");
+    inactivityTimer = setTimeout(() => {
       navbar.classList.add("hidden");
-  }, 3000); // 3000ms = 3 segundos de inactividad
+    }, 3000);
+  };
+
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 425 && !navbar.classList.contains("scrolled")) {
+      navbar.classList.add("scrolled");
+    } else if (window.scrollY <= 425) {
+      navbar.classList.remove("scrolled");
+    }
+
+    resetInactivityTimer();
+  });
+
+  window.addEventListener("mousemove", resetInactivityTimer);
+  window.addEventListener("keydown", resetInactivityTimer);
 });
 
-// Variable para almacenar el temporizador de inactividad
-let inactivityTimer;
 
-// Si no hay desplazamiento durante un tiempo, ocultamos la barra
-window.addEventListener("mousemove", resetInactivityTimer);
-window.addEventListener("keydown", resetInactivityTimer);
 
-function resetInactivityTimer() {
-  clearTimeout(inactivityTimer);
-  document.getElementById("navbar").classList.remove("hidden");
-  inactivityTimer = setTimeout(function() {
-      document.getElementById("navbar").classList.add("hidden");
-  }, 3000); // 3 segundos de inactividad
 
-}
+
+
+
+
+
+
 
 
 
@@ -623,6 +619,7 @@ form.addEventListener("submit", function (e) {
   document.querySelectorAll('.tile, .tilegrande').forEach(tile => {
     observerML.observe(tile);
   });
+
 
   const observerfade = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
