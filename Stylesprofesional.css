@@ -384,11 +384,6 @@ button {
   }
   
 
-
-
-
-
-
 @media (max-width: 768px) {
   html {
     font-size: 14px;
@@ -431,8 +426,6 @@ button {
     height: auto !important;
     padding: 2rem 0 !important;
   }
-
-
 
   .image-box1, .image-box2 {
     width: 90%; /* Ajuste del ancho */
@@ -546,7 +539,8 @@ button {
 @media (max-width: 400px){
   
   .div1_ml {
-    min-height: 90vh; /* 90% de la altura de la ventana del dispositivo */
+    min-height: 90vh; 
+    heigh:90vh;
     flex-direction: column;
     padding: 1.5rem;
   }
