@@ -28,13 +28,6 @@ html {
     padding: 1rem !important;
   }
   
-  /* Ajustes de padding general */
-  .hero-stochastic, .spotify-carousel-section, .apple-carousel-section {
-    padding-left: 1rem !important;
-    padding-right: 1rem !important;
-    height: auto !important;
-  }
-  
   /* Botones */
   .btn--outline {
     margin-right: 0.5em !important;
